@@ -9,10 +9,41 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <style>
+      <%= ".message-box" %> {
+          padding: 10px;
+          border-radius: 15px; /* Rounded corners */
+          margin: 5px 0; /* Vertical spacing between messages */
+          color: black; /* Text color for better contrast */
+          font-size: 16px; /* Font size for readability */
+          max-width: 60%; /* Max width to make it look like a bubble */
+          word-wrap: break-word; /* Ensure long words wrap to the next line */
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for 3D effect */
+          display: inline-block; /* Display as an inline-block element */
+      }
+
+      <%= ".msg-#{current_user&.id}" %> {
+          background-color: #007bff !important;
+          padding: 10px;
+          border-radius: 15px; /* Rounded corners */
+          margin: 5px 0; /* Vertical spacing between messages */
+          color: white; /* Text color for better contrast */
+          font-size: 16px; /* Font size for readability */
+          max-width: 60%; /* Max width to make it look like a bubble */
+          word-wrap: break-word; /* Ensure long words wrap to the next line */
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for 3D effect */
+          display: inline-block; /* Display as an inline-block element */
+      }
+
+      <%= ".cont-#{current_user&.id}" %> {
+      display: flex;
+      justify-content: flex-end
+      }
+    </style>
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="mx-auto flex">
       <%= yield %>
     </main>
   </body>

@@ -1,4 +1,4 @@
-<%= form_with(model: @room, remote: true, class: "d-flex") do |f| %>
-  <%= f.text_field :name, class: "form-control", autocomplete: 'off' %>
-  <%= f.submit data: { disable_with: false } %>
+<%= form_with(model: @room, remote: true, class: "flex items-center space-x-2", data: {controller: 'reset-form', action: 'turbo:submit-end->reset-form#reset'}) do |f| %>
+  <%= f.text_field :name, class: "form-control flex-grow px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500", autocomplete: 'off' %>
+  <%= f.submit "Create", class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50", data: { disable_with: false } %>
 <% end %>
