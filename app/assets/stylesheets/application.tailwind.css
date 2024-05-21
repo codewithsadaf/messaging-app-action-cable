@@ -11,3 +11,14 @@
 }
 
 */
+
+
+.layout{
+  max-height: calc(100vh - 72px);
+  overflow-y: scroll;
+}
+
+.messagesDiv{
+  max-height: calc(100vh - 100px);
+  overflow-y: scroll;
+}
