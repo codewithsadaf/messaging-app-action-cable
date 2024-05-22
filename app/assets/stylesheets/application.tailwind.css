@@ -22,3 +22,8 @@
   max-height: calc(100vh - 100px);
   overflow-y: scroll;
 }
+
+.custom-size {
+  width: 100%;
+  height: 100%;
+}
