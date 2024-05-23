@@ -27,3 +27,14 @@
   width: 100%;
   height: 100%;
 }
+
+.attach-image{
+  margin-top: 7px;
+  margin-right: 5px;
+}
+
+.attachment_file {
+  width: 350px;
+  height: 350px;
+  object-fit: cover; /* Ensures the content fits within the 50x50 box while maintaining aspect ratio */
+}

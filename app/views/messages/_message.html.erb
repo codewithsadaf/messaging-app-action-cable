@@ -10,13 +10,13 @@
     <% if message.attachments.attached? %>
       <% message.attachments.each_with_index do |attachment, index| %>
         <% if attachment.image? %>
-          <%= image_tag(message.chat_attachment(index)) %>
+          <%= image_tag(message.chat_attachment(index), class: 'attachment_file') %>
         <% elsif attachment.video? %>
-          <%= video_tag(url_for(attachment), controls:'') %>
+          <%= video_tag(url_for(attachment), controls:'', class: 'attachment_file') %>
         <% elsif attachment.audio? %>
-          <%= audio_tag(url_for(attachment), controls: '') %>
+          <%= audio_tag(url_for(attachment), controls: '', class: 'attachment_file') %>
         <% else %>
-          <%= link_to attachment.filename, url_for(attachment), style:"text-decoration: none; color: #fff" %>
+          <%= link_to attachment.filename, url_for(attachment),class: 'attachment_file', style:"text-decoration: none; color: #fff" %>
         <% end %>
       <% end %>
     <% end %>
