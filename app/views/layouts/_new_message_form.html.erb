@@ -1,16 +1,14 @@
 <div class="mt-4 px-4">
   <%= form_with(model: [@single_room, @message], remote: true, class: "flex space-x-2", data: {controller: 'reset-form', action: 'turbo:submit-end->reset-form#reset'}) do |f| %>
-    <div id="attachment-previews" 
-      data-controller="message-preview"
-      data-action="message-preview#preview">
+    <div id="attachment-previews">
     </div>
     <div class="image-upload relative attach-image">
       <label for="message_attachments" class="cursor-pointer flex items-center">
         <i class="fas fa-paperclip upload-button text-2xl"></i>
       </label>
-      <%= f.file_field :attachments, multiple: true, id: 'message_attachments', class: 'hidden', data: {controller: "message-preview", action: "change->message-preview#preview"} %>
+      <%= f.file_field :attachments, multiple: true, id: 'message_attachments', class: 'hidden' %>
     </div>
     <%= f.text_field :body, id: 'chat-text', class: "flex-1 p-2 border rounded", placeholder: "Type your message...", autocomplete: 'off' %>
-    <%= f.submit 'Send', data: { disable_with: false, controller: "message-preview", action: "click->message-preview#clearPreviews" }, class: "px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" %>
+    <%= f.submit 'Send', data: { disable_with: false }, class: "px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" %>
   <% end %>
 </div>
