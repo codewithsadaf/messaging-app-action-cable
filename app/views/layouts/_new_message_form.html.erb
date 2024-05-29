@@ -5,10 +5,22 @@
     <div class="image-upload relative attach-image">
       <label for="message_attachments" class="cursor-pointer flex items-center">
         <i class="fas fa-paperclip upload-button text-2xl"></i>
+        <span id="attached-filename" class="ml-[3px] text-sm"></span>
       </label>
-      <%= f.file_field :attachments, multiple: true, id: 'message_attachments', class: 'hidden' %>
+      <%= f.file_field :attachments, multiple: true, id: 'message_attachments', class: 'hidden', onchange: "attachedFile()" %>
     </div>
     <%= f.text_field :body, id: 'chat-text', class: "flex-1 p-2 border rounded", placeholder: "Type your message...", autocomplete: 'off' %>
-    <%= f.submit 'Send', data: { disable_with: false }, class: "px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" %>
+    <%= f.submit 'Send', data: { disable_with: false }, class: "px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600", onclick: "removeAttachedFile()" %>
   <% end %>
 </div>
+
+<script>
+  function attachedFile(){
+    item = document.getElementById('message_attachments')
+    document.getElementById('attached-filename').textContent = item.value.split('\\').slice(-1)[0]
+  }
+
+  function removeAttachedFile(){
+    document.getElementById('attached-filename').textContent = ""
+  }
+</script>
