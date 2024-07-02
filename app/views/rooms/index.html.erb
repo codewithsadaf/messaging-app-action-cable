@@ -1,0 +1,46 @@
+<div class="min-h-screen flex flex-col w-[100%]">
+  <!-- Navbar -->
+  <nav class="bg-gray-800 text-white p-4 flex justify-between items-center h-[72px]">
+    <h5><%= current_user.email %></h5>
+    <div>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4 text-center" %>
+    </div>
+  </nav>
+
+  <div class="layout flex flex-1" >
+    <!-- Sidebar -->
+    <aside class="layout w-1/4 bg-gray-100 p-4">
+      <h4 class="text-xl mb-4">Users</h4>
+      <%= turbo_stream_from "users" %>
+      <div id="users" class="space-y-2">
+        <%= render @users %>
+      </div>
+      <div class="mb-4 mt-5">
+        <h4 class="text-xl mb-2">Rooms</h4>
+        <div>
+          <%= render 'layouts/new_room_form' %>
+        </div>
+        <%= turbo_stream_from "rooms" %>
+        <div id="rooms" class="space-y-2">
+          <%= render @rooms %>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Chat Area -->
+    <main class="layout flex-1 bg-white p-4 flex flex-col">
+      <div id="room_container" class="flex-1 flex flex-col">
+        <% if @single_room %>
+          <div id="single_room" data-controller = "scroll" class="messagesDiv flex-1 flex flex-col border rounded py-4">
+            <h4 class="text-center text-2xl mb-4"><%= @user&.email || @single_room.name %></h4>
+            <%= turbo_stream_from @single_room %>
+            <div id="messages" class="flex-1 overflow-y-auto mb-4 p-4">
+              <%= render @messages %>
+            </div>
+            <%= render partial: 'layouts/new_message_form' %>
+          </div>
+        <% end %>
+      </div>
+    </main>
+  </div>
+</div>

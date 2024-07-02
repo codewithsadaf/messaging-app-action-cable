@@ -5,12 +5,57 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <style>
+      <%= ".message-box" %> {
+          padding: 10px;
+          border-radius: 15px; /* Rounded corners */
+          margin: 5px 0; /* Vertical spacing between messages */
+          color: black; /* Text color for better contrast */
+          font-size: 16px; /* Font size for readability */
+          max-width: 60%; /* Max width to make it look like a bubble */
+          word-wrap: break-word; /* Ensure long words wrap to the next line */
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for 3D effect */
+          display: inline-block; /* Display as an inline-block element */
+      }
+
+      <%= ".msg-#{current_user&.id}" %> {
+          background-color: #007bff !important;
+          padding: 10px;
+          border-radius: 15px; /* Rounded corners */
+          margin: 5px 0; /* Vertical spacing between messages */
+          color: white; /* Text color for better contrast */
+          font-size: 16px; /* Font size for readability */
+          max-width: 60%; /* Max width to make it look like a bubble */
+          word-wrap: break-word; /* Ensure long words wrap to the next line */
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for 3D effect */
+          display: inline-block; /* Display as an inline-block element */
+      }
+
+      <%= ".cont-#{current_user&.id}" %> {
+      display: flex;
+      justify-content: flex-end
+      }
+    </style>
   </head>
 
   <body>
-    <%= yield %>
+    <% if flash[:notice] %>
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <% if flash[:alert] %>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <%= flash[:alert] %>
+        </div>
+      <% end %>
+    <main class="mx-auto flex">
+      <%= yield %>
+    </main>
   </body>
 </html>
